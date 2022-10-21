@@ -1,5 +1,4 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+using Microsoft.EntityFrameworkCore;
 using recept_boken.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddDbContext<RecipeContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("RecipeContext")));
 
 var app = builder.Build();
 
